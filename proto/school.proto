@@ -13,9 +13,5 @@ message School {
 }
 
 message TeacherTeam {
-    map<uint32, Person> teachers = 1[(example.immutable) = true]; 
-}
-
-message StudentTeam {
-    map<uint32, Person> teachers = 1; 
+    map<uint32, Person> teachers = 1[(example.immutable) = true]
 }
