@@ -60,7 +60,7 @@ cd tools
 ### 2. 编译 Analyzer
 
 ```bash
-go install ./cmd/immitablecheck
+go install ./cmd/immutablecheck
 ```
 
 ### 3. 运行 Analyzer
@@ -68,13 +68,13 @@ go install ./cmd/immitablecheck
 检测单个文件：
 
 ```bash
-immitablecheck ./main.go
+immutablecheck ./main.go
 ```
 
 检测所有包：
 
 ```bash
-immitablecheck ./...
+immutablecheck ./...
 ```
 
 ## 检测示例
