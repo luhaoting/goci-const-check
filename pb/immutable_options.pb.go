@@ -4,7 +4,7 @@
 // 	protoc        v6.32.0
 // source: immutable_options.proto
 
-package field_options
+package pb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -26,7 +26,7 @@ var file_immutable_options_proto_extTypes = []protoimpl.ExtensionInfo{
 		ExtendedType:  (*descriptorpb.FieldOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         59527,
-		Name:          "field_options.immutable",
+		Name:          "example.immutable",
 		Tag:           "varint,59527,opt,name=immutable",
 		Filename:      "immutable_options.proto",
 	},
@@ -42,14 +42,14 @@ var File_immutable_options_proto protoreflect.FileDescriptor
 
 const file_immutable_options_proto_rawDesc = "" +
 	"\n" +
-	"\x17immutable_options.proto\x12\rfield_options\x1a google/protobuf/descriptor.proto:=\n" +
-	"\timmutable\x12\x1d.google.protobuf.FieldOptions\x18\x87\xd1\x03 \x01(\bR\timmutableB#Z!goci-const-check/pb/field_optionsb\x06proto3"
+	"\x17immutable_options.proto\x12\aexample\x1a google/protobuf/descriptor.proto:=\n" +
+	"\timmutable\x12\x1d.google.protobuf.FieldOptions\x18\x87\xd1\x03 \x01(\bR\timmutableB\x15Z\x13goci-const-check/pbb\x06proto3"
 
 var file_immutable_options_proto_goTypes = []any{
 	(*descriptorpb.FieldOptions)(nil), // 0: google.protobuf.FieldOptions
 }
 var file_immutable_options_proto_depIdxs = []int32{
-	0, // 0: field_options.immutable:extendee -> google.protobuf.FieldOptions
+	0, // 0: example.immutable:extendee -> google.protobuf.FieldOptions
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

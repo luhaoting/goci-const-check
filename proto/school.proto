@@ -1,7 +1,7 @@
 syntax = "proto3";
 package example;
 
-option go_package = "goci-const-check/pb/example";
+option go_package = "goci-const-check/pb";
 
 import "immutable_options.proto";
 import "person.proto";
@@ -9,9 +9,13 @@ import "person.proto";
 message School {
     string name          = 1;
     string address       = 2;
-    TeacherTeam teachers = 3 [(field_options.immutable) = true]; 
+    TeacherTeam teachers = 3 [(example.immutable) = true]; 
 }
 
 message TeacherTeam {
-    map<uint32, Person> teachers = 1;
+    map<uint32, Person> teachers = 1[(example.immutable) = true]; 
+}
+
+message StudentTeam {
+    map<uint32, Person> teachers = 1; 
 }

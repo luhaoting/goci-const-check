@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package field_options;
+package example;
 
-option go_package = "goci-const-check/pb/field_options";
+option go_package = "goci-const-check/pb";
 
 // 声明自定义 field option：immutable (bool)
 import "google/protobuf/descriptor.proto";

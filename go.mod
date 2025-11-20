@@ -2,7 +2,10 @@ module goci-const-check
 
 go 1.25.1
 
-require golang.org/x/tools v0.39.0
+require (
+	golang.org/x/tools v0.39.0
+	google.golang.org/protobuf v1.36.10
+)
 
 require (
 	golang.org/x/mod v0.30.0 // indirect

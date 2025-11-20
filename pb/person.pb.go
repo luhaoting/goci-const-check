@@ -4,10 +4,9 @@
 // 	protoc        v6.32.0
 // source: person.proto
 
-package example
+package pb
 
 import (
-	_ "goci-const-check/pb/field_options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -91,7 +90,7 @@ const file_person_proto_rawDesc = "" +
 	"\x06Person\x12\x14\n" +
 	"\x02id\x18\x01 \x01(\x03B\x04\xb8\x88\x1d\x01R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
-	"\x03age\x18\x03 \x01(\x05B\x04\xb8\x88\x1d\x01R\x03ageB\x1dZ\x1bgoci-const-check/pb/exampleb\x06proto3"
+	"\x03age\x18\x03 \x01(\x05B\x04\xb8\x88\x1d\x01R\x03ageB\x15Z\x13goci-const-check/pbb\x06proto3"
 
 var (
 	file_person_proto_rawDescOnce sync.Once
@@ -122,6 +121,7 @@ func file_person_proto_init() {
 	if File_person_proto != nil {
 		return
 	}
+	file_immutable_options_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

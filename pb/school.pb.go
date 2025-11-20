@@ -4,10 +4,9 @@
 // 	protoc        v6.32.0
 // source: school.proto
 
-package example
+package pb
 
 import (
-	_ "goci-const-check/pb/field_options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -134,12 +133,12 @@ const file_school_proto_rawDesc = "" +
 	"\x06School\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
 	"\aaddress\x18\x02 \x01(\tR\aaddress\x126\n" +
-	"\bteachers\x18\x03 \x01(\v2\x14.example.TeacherTeamB\x04\xb8\x88\x1d\x01R\bteachers\"\x9b\x01\n" +
-	"\vTeacherTeam\x12>\n" +
-	"\bteachers\x18\x01 \x03(\v2\".example.TeacherTeam.TeachersEntryR\bteachers\x1aL\n" +
+	"\bteachers\x18\x03 \x01(\v2\x14.example.TeacherTeamB\x04\xb8\x88\x1d\x01R\bteachers\"\xa1\x01\n" +
+	"\vTeacherTeam\x12D\n" +
+	"\bteachers\x18\x01 \x03(\v2\".example.TeacherTeam.TeachersEntryB\x04\xb8\x88\x1d\x01R\bteachers\x1aL\n" +
 	"\rTeachersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\rR\x03key\x12%\n" +
-	"\x05value\x18\x02 \x01(\v2\x0f.example.PersonR\x05value:\x028\x01B\x1dZ\x1bgoci-const-check/pb/exampleb\x06proto3"
+	"\x05value\x18\x02 \x01(\v2\x0f.example.PersonR\x05value:\x028\x01B\x15Z\x13goci-const-check/pbb\x06proto3"
 
 var (
 	file_school_proto_rawDescOnce sync.Once
@@ -176,6 +175,7 @@ func file_school_proto_init() {
 	if File_school_proto != nil {
 		return
 	}
+	file_immutable_options_proto_init()
 	file_person_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
