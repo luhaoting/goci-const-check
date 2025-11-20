@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package field_options;
+
+option go_package = "goci-const-check/pb/field_options";
+
+// 声明自定义 field option：immutable (bool)
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FieldOptions {
+  bool immutable = 59527; // 唯一标识符应大于 50000，以避免与预定义选项冲突
+}

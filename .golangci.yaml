@@ -1,0 +1,17 @@
+version: "2.0"
+
+run:
+  timeout: 5m
+
+linters:
+  settings:
+    custom:
+      immutablefield:
+        path: $GOPATH/bin/golangci-lint-plugin-immutablefield # 插件路径
+        description: Detects modifications to immutable fields
+        original-url: github.com/your-username/your-project/lint/immutablelint # 你的插件地址
+
+  enable:
+    - immutablefield # 启用自定义 linter
+    - gofmt # 保留其他默认 linter
+    - govet

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package example;
+
+option go_package = "goci-const-check/pb/example";
+
+import "immutable_options.proto";
+
+message Person {
+  // 给 id 打 immutable 标注
+  int64 id = 1 [(field_options.immutable) = true];
+  string name = 2;
+  int32 age = 3 [(field_options.immutable) = true]; // 比如年龄不可变（示例）
+}
