@@ -100,7 +100,7 @@ main.go:10:2: assignment to immutable field Age
 ## 项目结构
 
 ```
-├── cmd/immitablecheck/       # Analyzer 实现
+├── cmd/immutablecheck/       # Analyzer 实现
 │   └── main.go              # 核心 Analyzer 代码
 ├── pb/                       # Protobuf 生成的 Go 代码
 │   ├── descriptor/
@@ -123,3 +123,13 @@ main.go:10:2: assignment to immutable field Age
 3. **扫描 Go 代码**：在所有 Go struct 定义中检测 immutable 标记（tags 或注释）
 4. **检测修改**：在代码中查找对 immutable 字段的赋值操作
 5. **报告错误**：输出所有违反 immutable 规范的位置
+
+## example
+```
+ immutablecheck ./main.go 2>&1
+goci-const-check\main.go:9:2: assignment to immutable field Id
+goci-const-check\main.go:11:2: assignment to immutable field Age
+goci-const-check\main.go:24:2: assignment to immutable field Teachers
+goci-const-check\main.go:33:2: assignment to immutable field Teachers
+goci-const-check\main.go:35:2: modifying immutable field Teachers (map/slice index)
+```

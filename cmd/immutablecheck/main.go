@@ -208,6 +208,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 			switch stmt := n.(type) {
 			case *ast.AssignStmt:
 				for _, lhs := range stmt.Lhs {
+					// Check direct field assignment:
 					if sel, ok := lhs.(*ast.SelectorExpr); ok {
 						if selInfo, found := pass.TypesInfo.Selections[sel]; found {
 							if v, ok := selInfo.Obj().(*types.Var); ok {
@@ -227,6 +228,37 @@ func run(pass *analysis.Pass) (interface{}, error) {
 												strings.EqualFold(v.Name(), snakeToCamelCase(immField)) {
 												pass.Reportf(sel.Pos(), "assignment to immutable field %s", v.Name())
 												break
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					// Check map index assignment:
+					if idx, ok := lhs.(*ast.IndexExpr); ok {
+						// Extract the X part (the map/slice being indexed)
+						if sel, ok := idx.X.(*ast.SelectorExpr); ok {
+							if selInfo, found := pass.TypesInfo.Selections[sel]; found {
+								if v, ok := selInfo.Obj().(*types.Var); ok {
+									// Check if the field being indexed is immutable
+									typeName := getReceiverTypeName(selInfo)
+									pkgName := v.Pkg().Name()
+
+									// Check local immutable fields
+									if immutableFields[v] {
+										pass.Reportf(idx.Pos(), "modifying immutable field %s (map/slice index)", v.Name())
+									} else {
+										// Check if this field is from pb package and might be immutable from proto
+										protoInfo, hasProtoInfo := protoImmutableInfo[typeName]
+										if hasProtoInfo && (pkgName == "pb" || strings.HasSuffix(v.Pkg().Path(), "/pb")) {
+											for _, immField := range protoInfo.FieldNames {
+												if strings.EqualFold(v.Name(), immField) ||
+													strings.EqualFold(v.Name(), snakeToCamelCase(immField)) {
+													pass.Reportf(idx.Pos(), "modifying immutable field %s (map/slice index)", v.Name())
+													break
+												}
 											}
 										}
 									}
