@@ -1,8 +1,8 @@
 name: CI
 
 # dont do workflow on every push/pull request for now
-#on:
-#   push:
+on:
+  push:
 #   pull_request:
 
 jobs:
