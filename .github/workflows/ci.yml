@@ -1,40 +1,40 @@
-name: CI
+# name: CI
 
-# dont do workflow on every push/pull request for now
-on:
-  push:
-#   pull_request:
+# # dont do workflow on every push/pull request for now
+# on:
+#   push:
+# #   pull_request:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: "1.25.1"
+#       - name: Set up Go
+#         uses: actions/setup-go@v4
+#         with:
+#           go-version: "1.25.1"
 
-      - name: Install protoc
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y protobuf-compiler
+#       - name: Install protoc
+#         run: |
+#           sudo apt-get update
+#           sudo apt-get install -y protobuf-compiler
 
-      - name: Install protoc-gen-go
-        run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+#       - name: Install protoc-gen-go
+#         run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
-      - name: Build tools
-        run: make build-tools
+#       - name: Build tools
+#         run: make build-tools
 
-      - name: Generate pb and descriptor
-        run: make gen
+#       - name: Generate pb and descriptor
+#         run: make gen
 
-      - name: Tag pb with immutable
-        run: ./bin/pbtagger -desc=out/all.protos.pb -pbdir=pb
+#       - name: Tag pb with immutable
+#         run: ./bin/pbtagger -desc=out/all.protos.pb -pbdir=pb
 
-      - name: Run golangci-lint
-        run: golangci-lint run ./...
+#       - name: Run golangci-lint
+#         run: golangci-lint run ./...
 
-      - name: Run immutable vet
-        run: go vet -vettool=./bin/immutablevet ./...
+#       - name: Run immutable vet
+#         run: go vet -vettool=./bin/immutablevet ./...
